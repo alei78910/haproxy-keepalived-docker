@@ -1,0 +1,28 @@
+version: '3'
+services:
+  haproxy-keepalived:
+    image: "haproxy-keepalived"
+    privileged: true
+    network_mode: host
+    restart: always
+    environment:
+      KEEPALIVED_STATE: "MASTER"
+      KEEPALIVED_INTERFACE: "eth0"
+      KEEPALIVED_PRIORITY: "105"
+      KEEPALIVED_V_ROUTER_ID: "40"
+      KEEPALIVED_VIP: "192.168.0.40"
+      haproxy_item1: |-
+        listen app-1
+            bind *:4000
+            mode http
+            maxconn 300
+            balance roundrobin
+            server server1 10.232.28.210:8080 maxconn 100 check
+            # server server2 192.168.0.22:4002 maxconn 300 check
+            # listen app-2
+            # lisbind *:5000
+            # lismode http
+            # lismaxconn 300
+            # lisbalance roundrobin
+            # lisserver server1 192.168.0.21:5001 maxconn 300 check
+            # lisserver server2 192.168.0.22:5002 maxconn 300 check

@@ -5,7 +5,7 @@ LANUCH_SCRIPT="keepalived --dont-fork --dump-conf --log-console --log-detail --l
 eval $LANUCH_SCRIPT
 while true; do
   k_pid=$(pidof keepalived)
-  if [ -n "$k_id" ]; then
+  if [ -n "$k_pid" ]; then
     break;
   fi
 

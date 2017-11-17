@@ -6,13 +6,12 @@ TMP_HAPROXY="/tmp/haproxy"
 TMP_FILE="${TMP_HAPROXY}/tmp.cfg"
 TMP_TEMPLATE="${TMP_HAPROXY}/template.cfg"
 
-TEMPLATE_FILE="/haproxy/template.cfg"
+TEMPLATE_FILE="/haproxy/haproxy_template.conf"
 HAPROXY_CFG="${HAPROXY_DIR}/haproxy.cfg"
 
 # mkdir to prevent not exists
 mkdir -p ${HAPROXY_DIR}
 mkdir -p ${TMP_HAPROXY}
-rm -rf ${HAPROXY_DIR}/haproxy.cfg
 
 # delete old haproxy.cfg and touch tmp.cfg
 rm -rf ${HAPROXY_CFG}

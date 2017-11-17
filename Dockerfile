@@ -9,15 +9,17 @@ RUN mkdir -p /data/keepalived && cd /data && apt-get install -y wget \
     && cd keepalived && apt-get install -y gcc && apt-get install -y libssl-dev && apt-get -y install libpopt-dev \
     && ./configure && apt-get install -y make && make && make install
 
+RUN apt-get install -y net-tools
+
 # entrypoint
 COPY docker-entrypoint-override.sh /
 RUN chmod +x /docker-entrypoint-override.sh
 
 # haproxy
-COPY haproxy/haproxy_cfg_init.sh /haproxy/
-COPY haproxy/template.cfg /haproxy/
+COPY haproxy/init_haproxy_conf.sh /haproxy/
+COPY haproxy/haproxy_template.conf /haproxy/
 
-RUN chmod +x /haproxy/haproxy_cfg_init.sh
+RUN chmod +x /haproxy/init_haproxy_conf.sh
 
 # keepalived
 COPY keepalived/keepalived_template.conf /keepalived/

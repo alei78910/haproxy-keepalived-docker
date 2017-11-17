@@ -21,7 +21,7 @@ stop() {
 }
 
 # init haproxy & keepalived conf
-/bin/bash -c /haproxy/haproxy_cfg_init.sh
+/bin/bash -c /haproxy/init_haproxy_conf.sh
 /bin/bash -c /keepalived/init_keepalived_conf.sh
 
 # exec haproxy entrypoint
@@ -38,6 +38,7 @@ while true; do
 
   # if h_pid is non-null, sleep; otherwise, break the cycle;
   while [ -n "$h_pid" ]; do
+    # echo "haproxy alive sleep"
     sleep 1
   done
   
